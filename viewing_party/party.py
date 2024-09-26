@@ -216,6 +216,70 @@ def get_friends_unique_watched(user_data):
 # ------------- WAVE 4 --------------------
 # -----------------------------------------
 
+# user_data = 
+# {
+#     "watched": [
+#         {
+#             "title": "Title A",
+#             "genre": "Horror",
+#             "rating": 3.5
+#         }, 
+#         {
+#             "title": "Title A",
+#             "genre": "Horror",
+#             "rating": 3.5
+#         }
+#     ],
+#     "friends": [
+#         {
+#             "watched": [
+#                 {
+#                     "title": "Title A",
+#                     "genre": "Horror",
+#                     "rating": 3.5,
+#                     "host": "netflix"
+#                 }, 
+#                 {
+#                     "title": "Title A",
+#                     "genre": "Horror",
+#                     "rating": 3.5,
+#                     "host": "hulu"
+#                 }
+#             ]
+#         },
+#         {
+#             "watched": [
+#                 {
+#                     "title": "Title A",
+#                     "genre": "Horror",
+#                     "rating": 3.5,
+#                     "host": "netflix"
+#                 }, 
+#                 {
+#                     "title": "Title A",
+#                     "genre": "Horror",
+#                     "rating": 3.5,
+#                     "host": "hulu"
+#                 }
+#             ],
+#         }
+#     ],
+#     "subscriptions": ["netflix", "hulu"]
+# }
+
+def get_available_recs(user_data):
+    recommended_movies = []
+
+    friends_unique_watched = get_friends_unique_watched(user_data)
+
+    for movie in friends_unique_watched:
+        for subscription in user_data["subscriptions"]:
+            if subscription == movie["host"]:
+                recommended_movies.append(movie)
+
+    return recommended_movies
+
+
 # -----------------------------------------
 # ------------- WAVE 5 --------------------
 # -----------------------------------------
